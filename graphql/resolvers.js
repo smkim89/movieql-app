@@ -1,11 +1,15 @@
-import {People, getById} from './db';
+import {getMovie, getById, addMovie, deleteMovie} from './db';
 
 const resolvers = {
     Query : {
-        people : () => People,
-        person : ( _ , args ) => getById(args.id)
+        movies : () => getMovie(),
+        movie : ( _ , args ) => getById(args.id)
 
         //( _ , args ) , ( _ , {id} ) 같은의미 args가 json으로 받아드림
+    },
+    Mutation : {
+        addMovie : (_, {name, score}) => addMovie(name, score),
+        deleteMovie :(_, {id}) => deleteMovie(id)
     }
 }
 
